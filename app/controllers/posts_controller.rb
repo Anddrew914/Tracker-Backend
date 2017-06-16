@@ -10,7 +10,7 @@ class PostsController < OpenReadController
 
   # GET /posts/1
   def show
-    render json: { post: @post, comments: @post.comments }, methods: :comment_ids
+    render json: { post: @post, comments: @post.comments }
   end
 
   # POST /posts
