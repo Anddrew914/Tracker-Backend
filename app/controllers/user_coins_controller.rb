@@ -1,5 +1,5 @@
 class UserCoinsController < OpenReadController
-  before_action :set_user_coin, only: [:show, :update, :destroy]
+  before_action only: [:show, :update, :destroy]
 
   # GET /user_coins
   def index
