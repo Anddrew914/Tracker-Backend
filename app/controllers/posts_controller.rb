@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    render json: { posts: Post.all, comments: Comment.all }, methods: :comment_ids
+    render json: { posts: Post.all, comments: Comment.all }
   end
 
   # GET /posts/1
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      render json: { post: @post, comments: @post.comments }, methods: :comment_ids, status: :created, localtion: @post
+      render json: { post: @post, comments: @post.comments }, methods: :comment_ids, status: :created, location: @post
     else
       render json: @post.errors, status: :unprocessable_entity
     end

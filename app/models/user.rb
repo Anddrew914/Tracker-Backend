@@ -2,5 +2,5 @@
 class User < ApplicationRecord
   include Authentication
   has_many :examples
-  has_many :user_coins
+  has_many :posts
 end
