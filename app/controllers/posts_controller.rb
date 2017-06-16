@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class PostsController < OpenReadController
   before_action :set_post, only: [:show, :update, :destroy]
 
   # GET /posts
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
       render json: { post: @post, comments: @post.comments }, methods: :comment_ids, status: :created, location: @post
     else
@@ -45,6 +45,6 @@ class PostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit( :title, :body)
     end
 end
