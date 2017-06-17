@@ -15,7 +15,7 @@ class CommentsController < OpenReadController
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
+    @comment = current_user.comments.new(comment_params)
 
     if @comment.save
       render json: { comment: @comment }, methods: :post_id, status: :created, location: @comment

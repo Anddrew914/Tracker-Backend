@@ -1,5 +1,6 @@
 class PostsController < OpenReadController
   before_action :set_post, only: [:show, :update, :destroy]
+  before_action :authenticate, only: [:create, :update, :destroy]
 
   # GET /posts
   def index
@@ -15,7 +16,7 @@ class PostsController < OpenReadController
 
   # POST /posts
   def create
-    @post = current_user.posts.build(post_params)
+    @post = current_user.posts.new(post_params)
     if @post.save
       render json: { post: @post, comments: @post.comments }, methods: :comment_ids, status: :created, location: @post
     else
@@ -40,7 +41,7 @@ class PostsController < OpenReadController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = current_user.posts.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

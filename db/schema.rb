@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170616000945) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id", mull: false
+    t.integer  "user_id"
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
