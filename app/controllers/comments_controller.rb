@@ -15,7 +15,7 @@ class CommentsController < OpenReadController
 
   # POST /comments
   def create
-    @comment = current_user.comments.new(comment_params)
+    @comment = current_user.comments.build(comment_params)
 
     if @comment.save
       render json: { comment: @comment }, methods: :post_id, status: :created, location: @comment
@@ -41,7 +41,7 @@ class CommentsController < OpenReadController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      @comment = Comment.find(params[:id])
+      @comment = current_user.comments.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -16,9 +16,9 @@ class PostsController < OpenReadController
 
   # POST /posts
   def create
-    @post = current_user.posts.new(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
-      render json: { post: @post, comments: @post.comments }, methods: :comment_ids, status: :created, location: @post
+      render json: { post: @post, comments: @post.comments, user: current_user}, methods: :comment_ids, status: :created, location: @post
     else
       render json: @post.errors, status: :unprocessable_entity
     end
