@@ -3,5 +3,5 @@
 class OpenReadController < ProtectedController
   READ_ACTIONS = [:index, :show].freeze
   skip_before_action :authenticate, only: READ_ACTIONS
-  before_action :set_current_user, only: READ_ACTIONS
+  before_action :set_current_user, except: READ_ACTIONS
 end
